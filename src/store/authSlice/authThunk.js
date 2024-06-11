@@ -4,12 +4,28 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const authPost = createAsyncThunk(
   'auth/postAuth',
-  async ({newDate,navigate}, { rejectWithValue }) => {
+  async ({ newDate, navigate }, { rejectWithValue }) => {
     try {
-       await axios.post(`${BASE_URL}/api/auth/signUpForClient`,newDate );
-       navigate('/signIn')
+      await axios.post(`${BASE_URL}/api/auth/signUpForClient`, newDate);
+      navigate('/signIn');
+      console.log(newDate);
     } catch (error) {
-        return rejectWithValue(error)
+      return rejectWithValue(error);
     }
   }
 );
+
+export const authPostIn = createAsyncThunk(
+  'authIn/postauthIn',
+  async ({ newDate, navigate }, { rejectWithValue }) => {
+    try {
+      await axios.post(`${BASE_URL}/api/auth/signIn`, newDate);
+      navigate('/homePage');
+      console.log(newDate);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+
